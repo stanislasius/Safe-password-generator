@@ -1,16 +1,13 @@
 # import target modules
 from math import ceil
-from random import sample
+from random import sample, shuffle
+from string import ascii_lowercase, ascii_uppercase, digits, punctuation
 
 
 
 # init variables and their values
 password, password_list =  str(), list()
-digits = [str(number) for number in range(0, 10)]
-lowercase_letters = [chr(unicode_index) for unicode_index in range(97, 123)]
-uppercase_letters = [chr(unicode_index) for unicode_index in range(65, 90)]
-# punctuation = "!#$%&*+-=?@^_." --  not sure that it is necessary to use it now
-
+punctuation = "!#$%&()*/_"
 
 # Init all functions you need
 def correct_password_number(password_numbers):                       #check entered values, must be only digits 
@@ -36,11 +33,13 @@ password_numbers = correct_password_number(input('Введите необход�
 print()
     
 password_length = correct_password_lenght(input('Введите длину(кол-во символов) одного пароля(не менее 8): '))
-print()            
+print()        
 
 for i in range(1, password_numbers + 1):
-    password = sample(digits, ceil(password_length / 3)) + sample(lowercase_letters, ceil(password_length / 3)) + sample(uppercase_letters, ceil(password_length / 3))
-    password_list.append(''.join(password))
+    password = sample(digits, ceil(password_length / 4)) + sample(ascii_lowercase, ceil(password_length / 2)) + sample(ascii_uppercase, ceil(password_length / 2)) + sample(punctuation, ceil(password_length / 4))
+    shuffle(password)
+    password_list.append(''.join(password[0:password_length + 1]))
+    del password
     
 print(*password_list, sep='\n')
     
