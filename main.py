@@ -4,6 +4,7 @@ ___version___ = 0.1
 from math import ceil
 from random import sample, shuffle
 from string import ascii_lowercase, ascii_uppercase, digits
+from time import sleep
 
 
 # init variables and their values
@@ -50,5 +51,7 @@ print('Вы запустили программу генерации парол�
 if input('Сгенерировать пароль(-и)? ').lower() == 'да':
     start_program()
 else:
-    exit('Либо было введено "Нет", либо иные данные. Программа завершает свюо работу.')
+    print('Либо было введено "Нет", либо иные данные. Программа завершает свюо работу.')
 
+sleep(100.00)
+exit()
