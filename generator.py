@@ -1,17 +1,22 @@
 # import file-modules
-import main
 import check_functions
 
 #import python modules
 from math import ceil
-from random import sample, shuffle
+from random import choice, shuffle
 from string import ascii_lowercase, ascii_uppercase, digits
 
 
 
-def start_program():
+def start_password_generator():
     """ Основной модуль программы, где создаются пароли """
 
+    # init variables and their values
+    password, password_list =  str(), list()
+    punctuation = "!#$%&()*/_"
+    symbols_for_password = ascii_lowercase + ascii_uppercase + digits + punctuation
+
+    # 
     password_numbers = check_functions.correct_password_number(input('Введите необходимое количество сгенерированных паролей: '))
     print()
         
@@ -19,12 +24,10 @@ def start_program():
     print()        
 
     for i in range(1, password_numbers + 1):
-        password = sample(digits, ceil(password_length / 4)) + sample(ascii_lowercase, ceil(password_length / 4)) + sample(ascii_uppercase, ceil(password_length / 4)) + sample(punctuation, ceil(password_length / 4))
+        password = [str(choice(symbols_for_password)) for _ in range(1, password_length + 1)]
         shuffle(password)
         password.append('\n')        
-        main.password_list.append(''.join(password))
+        password_list.append(''.join(password))
         del password
         
-    return main.password_list
-
-
+    return password_list
